@@ -1,5 +1,5 @@
 import { NowRequest, NowResponse } from '@now/node'
-import { getTopArtists } from '../get-top-artists';
+import { getTopArtists } from '../services/get-top-artists';
 
 export default async function (req: NowRequest, res: NowResponse) {
 

@@ -1,0 +1,6 @@
+{
+  "watch": ["api", "services", "dev.ts"],
+  "ext": "ts",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "ts-node --project tsconfig.dev.json ./dev.ts"
+}
