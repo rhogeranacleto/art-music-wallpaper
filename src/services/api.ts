@@ -33,10 +33,12 @@ export const getAlbums = async (query: IAlbumQuery): Promise<IAlbum[]> => {
   }
 
   console.time('Request from API');
+  const path = `/api/albums?${params}`;
+  const url = process.env.REACT_APP_API_URL
+    ? `${process.env.REACT_APP_API_URL}${path}`
+    : path;
 
-  const { data } = await axios.get<IAlbum[]>(
-    `${process.env.REACT_APP_API_URL}/api/albums?${params}`,
-  );
+  const { data } = await axios.get<IAlbum[]>(url);
 
   console.timeEnd('Request from API');
 
