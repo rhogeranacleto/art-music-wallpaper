@@ -1,5 +1,5 @@
-import React from 'react';
 import './App.scss';
+import React from 'react';
 import { Template1 } from './pages/Template-1/Template-1';
 
 function App() {

@@ -8,13 +8,13 @@ export interface IRawAlbums {
   name: string;
   playcount: string;
   url: string;
-  image: IImage[]
+  image: IImage[];
 }
 
 export interface ITopAlbums {
   topalbums: {
-    album: IRawAlbums[]
-  }
+    album: IRawAlbums[];
+  };
 }
 
 export interface IRawArtists {
@@ -26,8 +26,8 @@ export interface IRawArtists {
 
 export interface ITopArtists {
   topartists: {
-    artist: IRawArtists[]
-  }
+    artist: IRawArtists[];
+  };
 }
 
 export interface IRawTracks {
@@ -39,12 +39,12 @@ export interface IRawTracks {
 
 export interface ITopTracks {
   toptracks: {
-    track: IRawTracks[]
-  }
+    track: IRawTracks[];
+  };
 }
 
 export interface IData {
-  artists: IRawArtists[],
-  tracks: IRawTracks[],
+  artists: IRawArtists[];
+  tracks: IRawTracks[];
   albums: IRawAlbums[];
 }

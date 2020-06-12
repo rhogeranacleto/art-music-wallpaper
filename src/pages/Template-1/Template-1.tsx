@@ -1,6 +1,6 @@
+import './Template-1.scss';
 import React from 'react';
 // import { useImages } from '../../services/use-images';
-import './Template-1.scss';
 import { useAlbums } from '../../services/use-albums';
 
 export const Template1 = ({ user }: { user: string }) => {
