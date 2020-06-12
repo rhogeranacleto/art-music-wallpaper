@@ -1,4 +1,4 @@
-import { ITopArtists } from '../interfaces/interfaces';
+import { ITopArtists } from './interfaces';
 import axios from 'axios';
 import cheerio from 'cheerio';
 import { getConfig } from '../config';

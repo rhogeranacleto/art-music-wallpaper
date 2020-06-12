@@ -1,9 +1,9 @@
+import albumRoute from './api/albums';
+import { config } from 'dotenv';
+import cors from 'cors';
 import express from 'express';
 import indexRoute from './api-deprecated/index';
-import { config } from 'dotenv';
 import screenshotRoute from './api/screenshot';
-import albumRoute from './api/albums';
-import cors from 'cors';
 
 config();
 
@@ -16,6 +16,5 @@ app.get('/api/screenshot', screenshotRoute);
 app.get('/api/albums', albumRoute);
 
 app.listen(8000, () => {
-
   console.log('subiu');
 });

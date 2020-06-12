@@ -1,4 +1,4 @@
-import { ITopAlbums } from '../interfaces/interfaces';
+import { ITopAlbums } from './interfaces';
 import axios from 'axios';
 import { getConfig } from '../config';
 

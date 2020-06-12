@@ -1,5 +1,5 @@
 import { NowRequest, NowResponse } from '@now/node';
-import { IRawAlbums } from '../interfaces/interfaces';
+import { IAlbum } from '../src/interface';
 import { getTopAlbums } from '../services/get-top-albums';
 
 export default async function (req: NowRequest, res: NowResponse) {
@@ -7,7 +7,7 @@ export default async function (req: NowRequest, res: NowResponse) {
     const { user, limit, period = '7day' } = req.query as {
       [key: string]: string;
     };
-    let result: IRawAlbums[] = [];
+    let result: IAlbum[] = [];
 
     if (user) {
       result = await getTopAlbums(user, limit, period);

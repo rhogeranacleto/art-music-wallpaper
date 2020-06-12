@@ -1,3 +1,5 @@
+import { IAlbum } from '../src/interface';
+
 interface IImage {
   size: string;
   '#text': string;
@@ -13,7 +15,7 @@ export interface IRawAlbums {
 
 export interface ITopAlbums {
   topalbums: {
-    album: IRawAlbums[];
+    album: IAlbum[];
   };
 }
 

@@ -1,4 +1,4 @@
-import { ITopTracks } from '../interfaces/interfaces';
+import { ITopTracks } from './interfaces';
 import axios from 'axios';
 import { getConfig } from '../config';
 
