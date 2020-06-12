@@ -1,8 +1,13 @@
-interface IAlbum {
+interface IImage {
+  size: string;
+  '#text': string;
+}
+
+export interface IAlbum {
   name: string;
   playcount: string;
   url: string;
-  image?: string;
+  image: IImage[];
 }
 
 interface IArtist {
@@ -16,7 +21,7 @@ interface ITrack {
   name: string;
   playcount: string;
   url: string;
-  image?: string;
+  image: IImage[];
 }
 
 export interface IUserData {
@@ -29,5 +34,10 @@ export interface IQuery {
   artist_limit: number;
   album_limit: number;
   track_limit: number;
+  user: string;
+}
+
+export interface IAlbumQuery {
+  limit: number;
   user: string;
 }

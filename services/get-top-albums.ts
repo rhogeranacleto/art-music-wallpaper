@@ -3,18 +3,23 @@ import { getConfig } from '../config';
 import cheerio from 'cheerio';
 import { ITopAlbums } from '../interfaces/interfaces';
 
-export async function getTopAlbums(name: string, limit: number, period: string) {
+export async function getTopAlbums(user: string, limit: string, period: string) {
 
-  if (limit) {
+  if (Number(limit)) {
 
-    const { API_KEY, format, base_last_fn_api } = getConfig();
+    const { api_key, format, base_last_fn_api } = getConfig();
+    const params = new URLSearchParams({
+      method: 'user.gettopalbums',
+      user,
+      api_key,
+      format,
+      limit,
+      period
+    }).toString();
 
-    const { data } = await axios.get<ITopAlbums>(`${base_last_fn_api}/?method=user.gettopalbums&user=${name}&api_key=${API_KEY}&format=${format}&limit=${limit}&period=${period}`);
+    const { data } = await axios.get<ITopAlbums>(`${base_last_fn_api}/?${params}`);
 
-    return Promise.all(data.topalbums.album.map(async album => ({
-      ...album,
-      image: await getAlbumImage(album.url)
-    })));
+    return data.topalbums.album;
   }
 
   return [];

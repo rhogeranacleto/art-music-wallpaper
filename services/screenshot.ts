@@ -5,16 +5,16 @@ export async function screenshot(user: string) {
   const browser = await chrome.puppeteer.launch({
     args: chrome.args,
     executablePath: await chrome.executablePath,
-    headless: process.env.VERCEL_URL ? chrome.headless : true,
+    headless: process.env.VERCEL_URL ? chrome.headless : false,
   });
 
   const page = await browser.newPage();
 
-  const baseUrl = process.env.VERCEL_URL || 'art-music-wallpaper.now.sh';
+  const baseUrl = process.env.VERCEL_URL ?
+    `https://${process.env.VERCEL_URL}` :
+    'localhost:3000';
 
-  console.log(process.env, baseUrl);
-
-  const url = `https://${baseUrl}?user=${user}`;
+  const url = `${baseUrl}?user=${user}`;
 
   await page.goto(url, {
     waitUntil: "networkidle0"

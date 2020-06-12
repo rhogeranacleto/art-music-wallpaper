@@ -13,9 +13,11 @@ export default async function (req: NowRequest, res: NowResponse) {
 
       const [artists, tracks, albums] = await Promise.all([
         getTopArtists(user as string, Number(artist_limit), period as string),
-        getToptracks(user as string, Number(track_limit), period as string),
-        getTopAlbums(user as string, Number(album_limit), period as string)
+        getToptracks(user as string, track_limit as string, period as string),
+        getTopAlbums(user as string, album_limit as string, period as string)
       ]);
+
+      console.log(tracks)
 
       return res.json({ artists, tracks, albums });
     }
@@ -23,7 +25,7 @@ export default async function (req: NowRequest, res: NowResponse) {
     res.json({ artists: [], tracks: [], albums: [] });
   } catch (e) {
 
-    console.log(e);
+    // console.log(e);
     res.status(500).json({ erro: e, message: 'jj' });
   }
 }

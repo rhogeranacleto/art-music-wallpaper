@@ -1,8 +1,14 @@
+interface IImage {
+  size: string;
+  '#text': string;
+}
+
 export interface IRawAlbums {
   mbid: string;
   name: string;
   playcount: string;
   url: string;
+  image: IImage[]
 }
 
 export interface ITopAlbums {

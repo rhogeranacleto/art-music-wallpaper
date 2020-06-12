@@ -3,18 +3,26 @@ import { getConfig } from '../config';
 import cheerio from 'cheerio';
 import { ITopTracks } from '../interfaces/interfaces';
 
-export async function getToptracks(name: string, limit: number, period: string) {
+export async function getToptracks(user: string, limit: string, period: string) {
 
-  if (limit) {
+  if (Number(limit)) {
 
-    const { API_KEY, format, base_last_fn_api } = getConfig();
+    console.log(limit)
 
-    const { data } = await axios.get<ITopTracks>(`${base_last_fn_api}/?method=user.gettoptracks&user=${name}&api_key=${API_KEY}&format=${format}&limit=${limit}&period=${period}`);
+    const { api_key, format, base_last_fn_api } = getConfig();
+    const params = new URLSearchParams({
+      method: 'user.gettoptracks',
+      user,
+      api_key,
+      format,
+      limit,
+      period
+    }).toString();
 
-    return Promise.all(data.toptracks.track.map(async track => ({
-      ...track,
-      image: await getTrackImage(track.url)
-    })));
+    // console.log(`${base_last_fn_api}/?method=user.gettoptracks&user=${name}&api_key=${api_key}&format=${format}&limit=${limit}&period=${period}`)
+    const { data } = await axios.get<ITopTracks>(`${base_last_fn_api}/?${params}`);
+
+    return data.toptracks.track;
   }
 
   return [];
@@ -22,6 +30,7 @@ export async function getToptracks(name: string, limit: number, period: string) 
 
 async function getTrackImage(url: string) {
 
+  console.log(url);
   const { data } = await axios.get(url);
   const backgroundElement = cheerio('.header-new-background-image', data);
 

@@ -7,9 +7,11 @@ export async function getTopArtists(name: string, limit: number, period: string)
 
   if (limit) {
 
-    const { API_KEY, format, base_last_fn_api } = getConfig();
+    console.log(limit)
 
-    const { data } = await axios.get<ITopArtists>(`${base_last_fn_api}/?method=user.gettopartists&user=${name}&api_key=${API_KEY}&format=${format}&limit=${limit}&period=${period}`);
+    const { api_key, format, base_last_fn_api } = getConfig();
+
+    const { data } = await axios.get<ITopArtists>(`${base_last_fn_api}/?method=user.gettopartists&user=${name}&api_key=${api_key}&format=${format}&limit=${limit}&period=${period}`);
 
     return Promise.all(data.topartists.artist.map(async artist => ({
       ...artist,
