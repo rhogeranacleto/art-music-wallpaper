@@ -1,16 +1,24 @@
 import chrome from 'chrome-aws-lambda';
-import { launch } from 'puppeteer-core';
 
-export async function screenshot() {
+export async function screenshot(user: string) {
 
-  const browser = await launch({
+  const browser = await chrome.puppeteer.launch({
     args: chrome.args,
     executablePath: await chrome.executablePath,
-    headless: chrome.headless,
+    headless: process.env.VERCEL_URL ? chrome.headless : true,
   });
 
   const page = await browser.newPage();
-  await page.goto('https://google.com');
+
+  const baseUrl = process.env.VERCEL_URL || 'art-music-wallpaper.now.sh';
+
+  console.log(process.env, baseUrl);
+
+  const url = `https://${baseUrl}?user=${user}`;
+
+  await page.goto(url, {
+    waitUntil: "networkidle0"
+  });
 
   const file = await page.screenshot({ type: 'jpeg', quality: 100, fullPage: true });
 
