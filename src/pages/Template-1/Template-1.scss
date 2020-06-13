@@ -1,0 +1,63 @@
+#template-1 {
+  .main-4,
+  .background-4 {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: grid;
+
+    justify-content: center;
+    align-content: center;
+    grid-template-areas:
+      ". . . ."
+      ". first second ."
+      ". third forth ."
+      ". . . .";
+    gap: 30px;
+
+    img {
+      width: 600px;
+      height: 600px;
+
+      &:nth-child(1) {
+        grid-area: first;
+      }
+
+      &:nth-child(2) {
+        grid-area: second;
+      }
+
+      &:nth-child(3) {
+        grid-area: third;
+      }
+
+      &:nth-child(4) {
+        grid-area: forth;
+      }
+    }
+  }
+
+  .background-4 {
+    gap: 0;
+    filter: blur(20px);
+    transform: scale(2.6);
+
+    img {
+      &:nth-child(1) {
+        grid-area: forth;
+      }
+
+      &:nth-child(2) {
+        grid-area: third;
+      }
+
+      &:nth-child(3) {
+        grid-area: second;
+      }
+
+      &:nth-child(4) {
+        grid-area: first;
+      }
+    }
+  }
+}

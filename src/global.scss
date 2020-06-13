@@ -1,0 +1,6 @@
+$width: 3000px;
+$height: 2100px;
+
+@function half($parentSize, $childSize) {
+  @return ($parentSize / 2) - ($childSize / 2);
+}

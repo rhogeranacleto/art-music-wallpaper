@@ -1,26 +1,18 @@
+import './App.scss';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Template1 } from './pages/Template-1/Template-1';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  console.log(process.env)
+
+  const template = new URLSearchParams(window.location.search).get('template');
+  const user = new URLSearchParams(window.location.search).get('user') || 'rhogeranacleto';
+
+  switch (template) {
+    case 'template-1':
+    default: return <Template1 user={user} />;
+  }
 }
 
 export default App;
